@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Order Confirmed</title>
+  <script>window.tpConfig = { tagId: "TP-1001", endpoint: "/collect" };</script>
+  <script src="/static/tagpulse.js"></script>
+</head>
+<body>
+  <h1>Thanks for your order</h1>
+  <p>Order T-50021, $49.99. Refresh this page to see duplicate conversions get removed in <a href="/report">/report</a>.</p>
+  <script>
+    tagpulse("consent", { ad_storage: "granted", analytics_storage: "granted" });
+    tagpulse("event", "purchase", {
+      transaction_id: "T-50021", value: 49.99, currency: "USD",
+      user_data: { email: "jane.doe@gmail.com", phone: "(619) 555-0134" }
+    });
+  </script>
+</body>
+</html>

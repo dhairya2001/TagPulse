@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Demo Store</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 640px; margin: 40px auto; padding: 0 16px; }
+    button { padding: 10px 16px; margin-right: 8px; }
+    #log { background: #f4f4f4; padding: 12px; font-size: 13px; white-space: pre-wrap; }
+  </style>
+  <script>window.tpConfig = { tagId: "TP-1001", endpoint: "/collect" };</script>
+  <script src="/static/tagpulse.js"></script>
+</head>
+<body>
+  <h1>Demo Store</h1>
+  <p>Accept or decline the consent banner, then sign up or buy. Open <a href="/report">/report</a> to see the measurement report.</p>
+  <button id="accept">Accept ads cookies</button>
+  <button id="decline">Decline</button>
+  <hr>
+  <input id="email" placeholder="you@example.com" value=" Jane.Doe@Gmail.com ">
+  <button id="signup">Sign up</button>
+  <a href="checkout.html">Go to checkout</a>
+  <div id="log"></div>
+  <script>
+    var log = function (m) { document.getElementById("log").textContent += m + "\n"; };
+    tagpulse("consent", { ad_storage: "denied" });
+    document.getElementById("accept").onclick = function () {
+      tagpulse("consent", { ad_storage: "granted", analytics_storage: "granted" }); log("consent granted");
+    };
+    document.getElementById("decline").onclick = function () { log("consent denied"); };
+    document.getElementById("signup").onclick = function () {
+      tagpulse("event", "sign_up", { method: "email",
+        user_data: { email: document.getElementById("email").value } });
+      log("sign_up sent");
+    };
+  </script>
+</body>
+</html>

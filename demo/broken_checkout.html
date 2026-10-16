@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Broken Checkout (audit example)</title>
+  <!-- Common partner mistakes: tag pasted twice, no config, event before consent, no transaction_id -->
+  <script src="/static/tagpulse.js"></script>
+  <script src="/static/tagpulse.js"></script>
+</head>
+<body>
+  <h1>Order placed</h1>
+  <script>
+    tagpulse("event", "purchase", { value: 20 });
+    tagpulse("consent", { ad_storage: "granted" });
+  </script>
+</body>
+</html>
